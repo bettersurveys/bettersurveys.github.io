@@ -134,7 +134,7 @@
 	"targetVar": "Variable objetivo",
 	"selectVar": "Seleccionar variable",
 	"estimationMethod": "Método de estimación",
-	"estimationMethodDescription": "Texto de ayuda para \"Método de estimación\". Para poder optimizar las estimaciones hay que haber seleccionado variables armonizadas. Cuando se activa, si los pesos son uniformes se aplica Matching y en caso contrario se aplica Training.",
+	"estimationMethodDescription": "Texto de ayuda para \"Método de estimación\". Para poder optimizar las estimaciones hay que haber seleccionado variables armonizadas. Cuando se activa, si los pesos son uniformes se aplica Matching (se predice la variable objetivo en la muestra de referencia con un modelo ajustado según la información de la muestra no probabilística y se estima a partir de ella, como si fuesen los valores reales) y en caso contrario se aplica Training (idéntico al Matching pero el modelo en esta ocasión es ponderado según los pesos que se indiquen).",
 	"noMatching": "Sin optimizar",
 	"linearMatching": "Regresión lineal",
 	"boostedMatching": "Gradient Boosting",
