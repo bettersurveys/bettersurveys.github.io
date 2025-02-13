@@ -12,6 +12,7 @@
 	"projectsTab": "Proyectos",
 	"loadTab": "Carga de datos",
 	"dataTab": "Datos",
+	"biasTab": "Representatividad",
 	"weightTab": "Ponderación",
 	"estimationTab": "Estimación",
 	"defaultProject": "Nombre de encuesta por defecto",
@@ -154,5 +155,17 @@
 	"numericInterval": "95% IC",
 	"pertentageInterval": "95% IC",
 	"mainEstimation": "Pesos calculados",
-	"altEstimation": "Pesos a comparar"
+	"altEstimation": "Pesos a comparar",
+	"biasTitle": "Representatividad de la muestra",
+	"emptyBias": "Seleccione una variable armonizada del desplegable <b>\"Variable a comparar\"</b> para ver la representatividad",
+	"invalidBias": "Es necesario cargar datos auxiliares con variables armonizadas para poder analizar la representatividad",
+	"biasVar": "Variable a comparar",
+	"getBias": "Visualizar representatividad",
+	"biasLoading": "Espere un momento mientras se calcula la representatividad...",
+	"biasError": "Error al calcular la representatividad",
+	"biasTable": "Vista frecuencias",
+	"biasDifference": "Estadísticos de diferencia absolutas y relativas de las frecuencias",
+	"biasAbsolute": "Diferencias absolutas",
+	"biasRelative": "Diferencias relativas",
+	"biasChart": "Gráficos de barras agrupadas"
 }
