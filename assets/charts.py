@@ -3,8 +3,8 @@ import altair as alt
 
 chart_width = {"step": 150}
 ticks_width = 100
-multi_chart_width = {"step": 30}
-multi_ticks_width = 20
+multi_chart_width = {"step": 40}
+multi_ticks_width = 25
 
 def numeric(name, values):
 	x = alt.X("name:N", title = name, axis = alt.Axis(labelAngle = 0))
