@@ -63,7 +63,7 @@ def boxplot(names, data):
 	return alt.Chart(data[names]).transform_fold(
 		names,
 		as_ = ['variable', 'value']
-	).mark_boxplot(extent='min-max', size = ticks_width, ticks = {"width": ticks_width / 2}).encode(
+	).mark_boxplot(size = ticks_width, ticks = {"width": ticks_width / 2}).encode(
 		x = alt.X("variable:N", axis = alt.Axis(labelAngle = 0, title = None)),
 		y = alt.Y("value:Q", axis = alt.Axis(title = None)),
 		color = alt.Color("variable:N", legend = None)
