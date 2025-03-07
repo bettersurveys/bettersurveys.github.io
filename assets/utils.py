@@ -148,6 +148,24 @@ def prepare_calibration(sample, population_totals, weights_var = None):
 	if weights_var is not None: sample[weights_var] = weights
 	return sample, pd.Series(my_totals, copy = False)
 
+def weights_properties(series):
+	percentiles = np.nanpercentile(series, (25, 50, 75), method = "median_unbiased")
+	
+	properties = {
+		"mean": series.mean(),
+		"deviation": series.std(),
+		"min": series.min(),
+		"Q1": percentiles[0],
+		"median": percentiles[1],
+		"Q3": percentiles[2],
+		"max": series.max(),
+		"IQR": percentiles[2] - percentiles[0],
+		"skew": series.skew(),
+		"kurt": series.kurt()
+	}
+	
+	return serialize(pd.Series(properties, dtype = object, copy = False))
+
 def single_estimation(series, weights):
 	import inps
 	interval = inps.confidence_interval(series, weights)

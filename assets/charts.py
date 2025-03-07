@@ -6,6 +6,8 @@ ticks_width = 100
 multi_chart_width = {"step": 40}
 multi_ticks_width = 25
 
+alt.data_transformers.disable_max_rows()
+
 def numeric(name, values):
 	x = alt.X("name:N", title = name, axis = alt.Axis(labelAngle = 0))
 	y = alt.Y("estimation:Q", title = None)
@@ -56,3 +58,23 @@ def compared_categorical(name, x, values, alt_values):
 	values = categorical_df(values, x[0])
 	alt_values = categorical_df(alt_values, x[1])
 	return categorical(name, pd.concat((values, alt_values), ignore_index = True))
+
+def boxplot(names, data):
+	return alt.Chart(data[names]).transform_fold(
+		names,
+		as_ = ['variable', 'value']
+	).mark_boxplot(extent='min-max', size = ticks_width, ticks = {"width": ticks_width / 2}).encode(
+		x = alt.X("variable:N", axis = alt.Axis(labelAngle = 0, title = None)),
+		y = alt.Y("value:Q", axis = alt.Axis(title = None)),
+		color = alt.Color("variable:N", legend = None)
+	).properties(width = chart_width).to_json()
+
+def histogram(names, data):
+	return alt.Chart(data[names]).transform_fold(
+		names,
+		as_ = ['variable', 'value']
+	).mark_bar(opacity = 1 / len(names)).encode(
+		x = alt.X("value:Q", title = None).bin(maxbins = 20),
+		y = alt.Y('count()', title = None).stack(None),
+		color = alt.Color("variable:N", title = None)
+	).properties(width = chart_width["step"] * 3).to_json()
