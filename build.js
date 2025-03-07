@@ -360,7 +360,7 @@ let e,a,t,i=0;function n(){return i=(i+1)%Number.MAX_SAFE_INTEGER}async function
 			<h4>${await R("evalHistogram")}</h4>
 			<div></div>
 		</article>
-	</main>`),n=[e];a&&n.push(t);let[s,r,o]=i.querySelectorAll("article");return s.append(Y(...await au(e,a,t))),[i,Promise.all([eK("boxplot",n,"np_sample",r.lastElementChild),eK("histogram",n,"np_sample",o.lastElementChild)])]}async function am(){let e=l(`<main class="main-content">
+	</main>`),n=[e];a&&n.push(t);let[s,r,o]=i.querySelectorAll("article");return[i,Promise.all([au(e,a,t).then(e=>s.append(Y(...e))),eK("boxplot",n,"np_sample",r.lastElementChild),eK("histogram",n,"np_sample",o.lastElementChild)])]}async function am(){let e=l(`<main class="main-content">
 		<header>
 			<h2>${await R("evalTitle")}</h2>
 			<h3>${F.value}</h3>

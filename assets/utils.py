@@ -149,11 +149,14 @@ def prepare_calibration(sample, population_totals, weights_var = None):
 	return sample, pd.Series(my_totals, copy = False)
 
 def weights_properties(series):
+	mean = series.mean()
+	deviation = series.std()
 	percentiles = np.nanpercentile(series, (25, 50, 75), method = "median_unbiased")
 	
 	properties = {
-		"mean": series.mean(),
-		"deviation": series.std(),
+		"mean": mean,
+		"deviation": deviation,
+		"CV": mean / deviation,
 		"min": series.min(),
 		"Q1": percentiles[0],
 		"median": percentiles[1],

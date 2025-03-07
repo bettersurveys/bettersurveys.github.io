@@ -74,6 +74,7 @@
 	"deviation": "Desviación típica",
 	"max": "Máximo",
 	"min": "Mínimo",
+	"CV": "CV",
 	"median": "Mediana",
 	"Q1": "Q1",
 	"Q3": "Q3",
