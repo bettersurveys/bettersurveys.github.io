@@ -156,7 +156,7 @@ def weights_properties(series):
 	properties = {
 		"mean": mean,
 		"deviation": deviation,
-		"CV": mean / deviation,
+		"CV": deviation / mean,
 		"min": series.min(),
 		"Q1": percentiles[0],
 		"median": percentiles[1],
