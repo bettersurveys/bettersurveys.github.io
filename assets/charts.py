@@ -9,11 +9,11 @@ multi_ticks_width = 25
 alt.data_transformers.disable_max_rows()
 
 def numeric(name, values):
-	x = alt.X("name:N", title = name, axis = alt.Axis(labelAngle = 0))
+	x = alt.X("name:N", title = name, axis = alt.Axis(labelAngle = 0), sort = None)
 	y = alt.Y("estimation:Q", title = None)
 	y1 = alt.Y("interval_lower:Q", title = None)
 	y2 = "interval_upper:Q"
-	color = alt.Color("name:N", legend = None)
+	color = alt.Color("name:N", legend = None, sort = None)
 	
 	bars = alt.Chart().mark_bar().encode(x = x, y = y, color = color)
 	intervals = alt.Chart().mark_errorbar(ticks = {"width": ticks_width}, color = "black").encode(x = x, y = y1, y2 = y2)
@@ -21,12 +21,12 @@ def numeric(name, values):
 	return alt.layer(bars.interactive(), intervals, data = values).properties(width = chart_width).to_json()
 
 def categorical(name, values):
-	x = alt.X("name:N", title = name, axis = alt.Axis(labelAngle = 0))
+	x = alt.X("name:N", title = name, axis = alt.Axis(labelAngle = 0), sort = None)
 	y = alt.Y("estimation:Q", title = None, axis = alt.Axis(format = "%"))
 	y1 = alt.Y("interval_lower:Q", title = None)
 	y2 = "interval_upper:Q"
-	color = alt.Color("index:N", title = None)
-	xOffset = "index:N"
+	color = alt.Color("index:N", title = None, sort = None)
+	xOffset = alt.XOffset("index:N", sort = None)
 	
 	bars = alt.Chart().mark_bar().encode(x = x, y = y, color = color, xOffset = xOffset)
 	intervals = alt.Chart().mark_errorbar(ticks = {"width": multi_ticks_width}, color = "black").encode(x = x, y = y1, y2 = y2, xOffset = xOffset)
@@ -64,9 +64,9 @@ def boxplot(names, data):
 		names,
 		as_ = ['variable', 'value']
 	).mark_boxplot(size = ticks_width, ticks = {"width": ticks_width / 2}).encode(
-		x = alt.X("variable:N", axis = alt.Axis(labelAngle = 0, title = None)),
+		x = alt.X("variable:N", axis = alt.Axis(labelAngle = 0, title = None), sort = None),
 		y = alt.Y("value:Q", axis = alt.Axis(title = None)),
-		color = alt.Color("variable:N", legend = None)
+		color = alt.Color("variable:N", legend = None, sort = None)
 	).properties(width = chart_width).to_json()
 
 def histogram(names, data):
@@ -76,5 +76,5 @@ def histogram(names, data):
 	).mark_bar(opacity = 1 / len(names)).encode(
 		x = alt.X("value:Q", title = None).bin(maxbins = 20),
 		y = alt.Y('count()', title = None).stack(None),
-		color = alt.Color("variable:N", title = None)
+		color = alt.Color("variable:N", title = None, sort = None)
 	).properties(width = chart_width["step"] * 3).to_json()

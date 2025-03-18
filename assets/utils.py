@@ -178,17 +178,76 @@ def single_estimation(series, weights):
 		'interval_upper': interval[1]
 	}
 
+def advanced_estimation(sample, target_var, method, p_sample, covariates, p_weights_var, numeric):
+	import inps
+	kwargs = {'covariates': covariates}
+	target_category = None
+	
+	if 'Psa' in method or 'Kw' in method:
+		if 'Boost' in method: kwargs['model'] = inps.boosting_classifier()
+		kwargs['weights_column'] = p_weights_var
+		
+		def estimator(np_sample, p_sample):
+			weights = inps.psa_weights(np_sample, p_sample, **kwargs)['np'] if 'Psa' in method else inps.kw_weights(np_sample, p_sample, **kwargs)
+			return inps.estimation(sample[target_var] if target_category is None else sample[target_var] == target_category, weights)
+	elif 'Matching' in method:
+		if 'Boost' in method: kwargs['model'] = inps.boosting_regressor() if numeric else inps.boosting_classifier()
+		weights = None if p_weights_var is None else p_sample[p_weights_var]
+		kwargs['target_column'] = target_var
+		
+		def estimator(np_sample, p_sample):
+			kwargs['target_category'] = target_category
+			matching_values = inps.matching_values(np_sample, p_sample, **kwargs)['p']
+			return inps.estimation(matching_values, weights)
+	elif 'Training' in method:
+		if 'Boost' in method:
+			kwargs['psa_model'] = inps.boosting_classifier()
+			kwargs['matching_model'] = inps.boosting_regressor() if numeric else inps.boosting_classifier()
+		
+		weights = None if p_weights_var is None else p_sample[p_weights_var]
+		kwargs['target_column'] = target_var
+		kwargs['weights_column'] = p_weights_var
+		
+		def estimator(np_sample, p_sample):
+			kwargs['target_category'] = target_category
+			matching_values = inps.training_values(np_sample, p_sample, **kwargs)['p']
+			return inps.estimation(matching_values, weights)
+	else:
+		raise ValueError(method)
+	
+	def get_estimation():
+		return dict(zip(
+			('estimation', 'interval_lower', 'interval_upper'),
+			inps.advanced_confidence_interval(sample, p_sample, estimator)
+		))
+	
+	if numeric:
+		return {key: curate(value) for key, value in get_estimation().items()}
+	else:
+		categories = sample[target_var].unique()
+		my_estimation = []
+		
+		for category in categories:
+			target_category = category
+			my_estimation.append(get_estimation())
+		
+		my_estimation = pd.DataFrame(my_estimation, index = categories)
+		my_estimation.sort_values('estimation', ascending = False, inplace = True)
+		return to_json(my_estimation)
+
 def estimation(sample, target_var, weights_var = None, method = None, p_sample = None, covariates = None, p_weights_var = None):
 	import inps
 	
 	sample = sample.dropna(subset = [target_var] if weights_var is None else [target_var, weights_var])
+	if p_weights_var is not None: p_sample = p_sample.dropna(subset = [p_weights_var])
 	numeric = is_numeric(sample[target_var])
 	weights = None if weights_var is None else sample[weights_var]
 	
 	if method is None:
 		values = sample[target_var]
+	elif method.startswith("advanced"):
+		return advanced_estimation(sample, target_var, method, p_sample, covariates, p_weights_var, numeric)
 	else:
-		if p_weights_var is not None: p_sample = p_sample.dropna(subset = [p_weights_var])
 		model = None
 		if method == "boosting": model = inps.boosting_regressor() if numeric else inps.boosting_classifier()
 		values = inps.matching_values(sample, p_sample, target_var, covariates = covariates, model = model, training_weight = weights)["p"]
