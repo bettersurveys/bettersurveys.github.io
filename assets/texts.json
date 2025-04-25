@@ -162,6 +162,7 @@
 	"emptyEstimation": "Seleccione una variable del desplegable <b>\"Variable objetivo\"</b> para ver estimaciones",
 	"estimationLoading": "Este proceso puede tardar unos minutos. Espere un momento mientras se calculan las estimaciones.",
 	"estimationError": "Error al cargar las estimaciones",
+	"lowDataError": "Algunas categorías tienen demasiado pocos datos",
 	"estimationHeader": "Tabla de estimaciones",
 	"estimationChartHeader": "Gráfico de estimaciones",
 	"comparedHeader": "Tabla de estimaciones según diferentes pesos",
