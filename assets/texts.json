@@ -129,7 +129,7 @@
 	"uniformWeights": "Pesos uniformes",
 	"popSize": "Población objetivo",
 	"popSizeTitle": "Tamaño de la población objetivo",
-	"popSizeDescription": "Número de individuos total de la población sobre la que se ha obtenido la muestra. En caso de haber disponibles unos datos auxiliares, se aplica por defecto el valor inferido de éstos en función de la variable de pesos seleccionada. Se trata del mismo total poblacional sobre el que se infieren los totales de variables, por lo que no debe cambiarse si se trabaja con totales inferidos. Para el resto de métodos puede dejarse en blanco y se calcularán pesos relativos.",
+	"popSizeDescription": "Número de individuos total de la población sobre la que se ha obtenido la muestra. En caso de haber disponibles unos datos auxiliares, se sugiere por defecto el valor inferido de éstos en función de la variable de pesos seleccionada. Se trata del mismo total poblacional sobre el que se infieren los totales de variables, por lo que debe usarse si se trabaja con totales inferidos. Para el resto de métodos puede dejarse en blanco y se calcularán pesos relativos.",
 	"popSizePlaceholder": "Ej. 11456",
 	"activeVars": "Variables usadas en el método",
 	"changeVars": "Cambiar variables seleccionadas",
