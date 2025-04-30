@@ -16,7 +16,7 @@ def numeric(name, values):
 	color = alt.Color("name:N", legend = None, sort = None)
 	
 	bars = alt.Chart().mark_bar().encode(x = x, y = y, color = color)
-	intervals = alt.Chart().mark_errorbar(ticks = {"width": ticks_width}, color = "black").encode(x = x, y = y1, y2 = y2)
+	intervals = alt.Chart().mark_errorbar(ticks = {"width": ticks_width}, color = "black").encode(x = x, y = y1, y2 = y2, tooltip = alt.TooltipValue(None))
 	
 	return alt.layer(bars.interactive(), intervals, data = values).properties(width = chart_width).to_json()
 
@@ -29,7 +29,7 @@ def categorical(name, values):
 	xOffset = alt.XOffset("index:N", sort = None)
 	
 	bars = alt.Chart().mark_bar().encode(x = x, y = y, color = color, xOffset = xOffset)
-	intervals = alt.Chart().mark_errorbar(ticks = {"width": multi_ticks_width}, color = "black").encode(x = x, y = y1, y2 = y2, xOffset = xOffset)
+	intervals = alt.Chart().mark_errorbar(ticks = {"width": multi_ticks_width}, color = "black").encode(x = x, y = y1, y2 = y2, xOffset = xOffset, tooltip = alt.TooltipValue(None))
 	
 	return alt.layer(bars.interactive(), intervals, data = values).properties(width = multi_chart_width).to_json()
 
