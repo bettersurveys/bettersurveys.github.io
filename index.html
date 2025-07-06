@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>Better Surveys</title>
@@ -7,9 +7,8 @@
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="styles.css">
-	<link rel="preload" href="assets/texts.json" as="fetch" crossorigin>
 	<script src="build.js" type="module"></script>
-	<link rel="modulepreload" href="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.mjs">
+	<link rel="modulepreload" href="https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.mjs">
 	<script type="module" src="https://luiscastro193.github.io/svg-inliner/svg-inliner.js" async></script>
 	<script type="module" src="https://luiscastro193.github.io/stats.js" async></script>
 	<script src="https://cdn.jsdelivr.net/npm/vega/build/vega.min.js" defer></script>
@@ -34,31 +33,23 @@
 				<div class="header-divider"></div>
 				<img src="images/agencia.svg" alt="Agencia Estatal de Investigación"/>
 			</section>
-			<a class="user-header" hidden>
-				<div class="header-divider"></div>
-				<img class="header-avatar" src="images/default-avatar.svg"/>
-				<article class="header-username">
-					<span>Usuario</span>
-					<span>Iniciar sesión</span>
-				</article>
-			</a>
 		</header>
 		<main>
 			<dialog class="modal loading" oncancel="event.preventDefault()" onclose="this.showModal()">
 				<img src="images/loading.svg"/>
-				<p>Cargando</p>
-				<p>Espere un momento mientras preparamos aplicación</p>
+				<p data-i18n="loading">Loading</p>
+				<p data-i18n="appLoading">The app is loading. Please, wait a moment.</p>
 			</dialog>
 			<script>document.querySelector('dialog').showModal()</script>
 		</main>
 		<footer>
 			<section class="footer-sponsors">
-				<span>Escuela Andaluza de Salud Pública</span>
+				<span data-i18n="sponsor1">Andalusian School of Public Health</span>
 				<div class="header-divider"></div>
-				<span>Universidad de Granada</span>
+				<span data-i18n="sponsor2">University of Granada</span>
 			</section>
 			<section class="footer-links">
-				<a href="/privacy" target="_blank" rel="noopener">Política de privacidad</a>
+				<a data-i18n="privacy" data-i18n-href="privacyLink" href="/texts/en/privacy" target="_blank" rel="noopener">Privacy policy</a>
 			</section>
 		</footer>
 	</div>
