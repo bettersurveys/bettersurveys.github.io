@@ -1,6 +1,8 @@
 # Carga de los datos
 
-Descripción sobre esta pestaña... Aquí **un ejemplo** de cómo poner cosas en negrita. Aquí [otro ejemplo](https://www.google.com/) que muestra cómo incluir enlaces. Finalmente *un ejemplo* de cursiva.
+En este apartado de la plataforma podrás cargar la base de datos de la encuesta que pretendas reponderar (Datos propios) y los datos auxiliares o de referencia para para llevar a cabo esa tarea.
+
+Para que el proceso de reponderación se lleve a cabo con éxito, las variables a comparar deben tener el mismo nombre y estructura en ambas bases de datos.
 
 ## Datos propios
 
@@ -12,8 +14,8 @@ Descripción sobre esta pestaña... Aquí **un ejemplo** de cómo poner cosas en
 
 > ### Cargar datos de referencia
 
-> Sube un archivo con la base de datos de referencia en formato “*.xlsx” para poder contrastar datos y comenzar el proceso de armonización.
+> Sube un archivo con la base de datos de referencia en formato “*.xlsx” para poder contrastar datos y comenzar el proceso de armonización de las variables comunes a ambas bases de datos. 
 
 > ### Insertar totales
 
-> No dispongo de una fuente de datos de referencia pero si de unos totales que me gustaría contrastar con mi datos propios.
+> Si no se dispone de una fuente de datos de referencia puede insertar los totales marginales de determinadas variables con las que contrastar los datos propios.
