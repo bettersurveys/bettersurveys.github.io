@@ -1,12 +1,36 @@
-from io import BytesIO
+from io import BytesIO, TextIOWrapper
 import json
 import numpy as np
 import pandas as pd
 import pandas.api.types as types
 
+def is_european(csv_bytes):
+	header = TextIOWrapper(BytesIO(csv_bytes), 'utf-8').readline(1024)
+	return header.count(';') > header.count(',')
+
+def read_csv(csv_bytes):
+	my_args = {'sep': ';', 'decimal': ','} if is_european(csv_bytes) else {}
+	return pd.read_csv(BytesIO(csv_bytes), **my_args)
+
+def read_excel(excel_bytes):
+	return pd.read_excel(BytesIO(excel_bytes), engine = "openpyxl")
+
+def read_parquet(parquet_bytes):
+	return pd.read_parquet(BytesIO(parquet_bytes), engine = "fastparquet")
+
+def to_csv(data):
+	my_bytes = BytesIO()
+	data.to_csv(my_bytes, index = False)
+	return my_bytes.getbuffer()
+
 def to_excel(data):
 	my_bytes = BytesIO()
 	data.to_excel(my_bytes, engine = "openpyxl", index = False)
+	return my_bytes.getbuffer()
+
+def to_parquet(data):
+	my_bytes = BytesIO()
+	data.to_parquet(my_bytes, engine = "fastparquet", index = False, compression = 'zstd')
 	return my_bytes.getbuffer()
 
 def is_numeric(series):
