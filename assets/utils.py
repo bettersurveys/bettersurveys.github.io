@@ -45,6 +45,7 @@ def has_missing(series):
 def same_categories(series1, series2):
 	values1 = pd.Series(tuple(series1.unique()), copy = False)
 	values2 = pd.Series(tuple(series2.unique()), copy = False)
+	if values1.size != values2.size: return False
 	for values in (values1, values2): values.sort_values(inplace = True, ignore_index = True)
 	return values1.equals(values2)
 
