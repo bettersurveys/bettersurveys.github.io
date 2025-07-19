@@ -43,11 +43,7 @@ def has_missing(series):
 	return series.isna().any()
 
 def same_categories(series1, series2):
-	values1 = pd.Series(series1.unique().tolist(), copy = False)
-	values2 = pd.Series(series2.unique().tolist(), copy = False)
-	if values1.size != values2.size: return False
-	for values in (values1, values2): values.sort_values(inplace = True, ignore_index = True)
-	return values1.equals(values2)
+	return series1.isin(series2).all() and series2.isin(series1).all()
 
 def harmonized_variables(sample1, sample2, weights_var = None):
 	if weights_var is not None:
