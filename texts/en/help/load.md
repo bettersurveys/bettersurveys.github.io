@@ -14,7 +14,7 @@ Para que el proceso de reponderación se lleve a cabo con éxito, las variables 
 
 > ### Cargar datos de referencia
 
-> Sube un archivo con la base de datos de referencia en formato “\*.csv”, “\*.xlsx” o “\*.parquet” para poder contrastar datos y comenzar el proceso de armonización de las variables comunes a ambas bases de datos. 
+> Sube un archivo con la base de datos de referencia en formato “\*.csv”, “\*.xlsx” o “\*.parquet” para poder contrastar datos y comenzar el proceso de armonización de las variables comunes a ambas bases de datos.
 
 > ### Insertar totales
 
