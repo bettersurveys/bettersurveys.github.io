@@ -1,5 +1,5 @@
 "use strict";
-import {loadPyodide} from "https://cdn.jsdelivr.net/pyodide/v0.28.3/full/pyodide.mjs";
+import {loadPyodide} from "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.mjs";
 const pyodide = loadPyodide({packages: ["numpy", "pandas", "micropip"]});
 
 onmessage = async function(event) {
@@ -10,7 +10,7 @@ onmessage = async function(event) {
 	
 	try {
 		let result = await (await pyodide).runPythonAsync(python);
-		if (result?.toJs) result = result.toJs({dict_converter: Object.fromEntries});
+		if (result?.toJs) result = result.toJs();
 		if (ArrayBuffer.isView(result)) result = URL.createObjectURL(new Blob([result]));
 		postMessage({result, id});
 	}
