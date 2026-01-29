@@ -1,5 +1,5 @@
 "use strict";
-import {loadPyodide} from "https://cdn.jsdelivr.net/pyodide/v0.29.2/full/pyodide.mjs";
+import {loadPyodide} from "https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.mjs";
 const pyodide = loadPyodide({packages: ["numpy", "pandas", "micropip"]});
 
 onmessage = async function(event) {
