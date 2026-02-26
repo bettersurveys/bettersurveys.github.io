@@ -13,7 +13,7 @@ def read_csv(csv_bytes):
 	return pd.read_csv(BytesIO(csv_bytes), **my_args)
 
 def read_excel(excel_bytes):
-	return pd.read_excel(BytesIO(excel_bytes), engine = "openpyxl")
+	return pd.read_excel(BytesIO(excel_bytes), engine = "calamine")
 
 def read_parquet(parquet_bytes):
 	return pd.read_parquet(BytesIO(parquet_bytes), engine = "fastparquet")
@@ -25,7 +25,7 @@ def to_csv(data):
 
 def to_excel(data):
 	my_bytes = BytesIO()
-	data.to_excel(my_bytes, engine = "openpyxl", index = False)
+	data.to_excel(my_bytes, engine = "xlsxwriter", index = False)
 	return my_bytes.getbuffer()
 
 def to_parquet(data):
