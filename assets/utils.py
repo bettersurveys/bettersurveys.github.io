@@ -16,7 +16,7 @@ def read_excel(excel_bytes):
 	return pd.read_excel(BytesIO(excel_bytes), engine = "calamine")
 
 def read_parquet(parquet_bytes):
-	return pd.read_parquet(BytesIO(parquet_bytes), engine = "fastparquet")
+	return pd.read_parquet(BytesIO(parquet_bytes), engine = "pyarrow")
 
 def to_csv(data):
 	my_bytes = BytesIO()
@@ -30,7 +30,7 @@ def to_excel(data):
 
 def to_parquet(data):
 	my_bytes = BytesIO()
-	data.to_parquet(my_bytes, engine = "fastparquet", index = False, compression = 'zstd')
+	data.to_parquet(my_bytes, engine = "pyarrow", index = False, compression = 'zstd')
 	return my_bytes.getbuffer()
 
 def is_numeric(series):
