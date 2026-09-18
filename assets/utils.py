@@ -42,8 +42,10 @@ def num_vars(dataframe):
 def has_missing(series):
 	return series.isna().any()
 
-def same_categories(series1, series2):
-	return series1.isin(series2).all() and series2.isin(series1).all()
+def categories_mismatch(series1, series2):
+	subsets = (series1.isin(series2).all(), series2.isin(series1).all())
+	if all(subsets): return None
+	return "subset" if any(subsets) else "categories"
 
 def harmonized_variables(sample1, sample2, weights_var = None):
 	if weights_var is not None:
@@ -68,8 +70,8 @@ def harmonized_variables(sample1, sample2, weights_var = None):
 			vars_info["nonharmonized"].append({"name": var, "reason": "weight"})
 		elif has_missing(sample1[var]) != has_missing(sample2[var]):
 			vars_info["nonharmonized"].append({"name": var, "reason": "missing"})
-		elif not is_numeric_var and not same_categories(sample1[var], sample2[var]):
-			vars_info["nonharmonized"].append({"name": var, "reason": "categories"})
+		elif not is_numeric_var and (reason := categories_mismatch(sample1[var], sample2[var])):
+			vars_info["nonharmonized"].append({"name": var, "reason": reason})
 		else:
 			vars_info["harmonized"].append(var)
 	

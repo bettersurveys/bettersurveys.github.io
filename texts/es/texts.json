@@ -76,6 +76,7 @@
 	"categoriesReason": "Las variables no pueden estar armonizadas porque no tienen las mismas categorías.",
 	"weightReason": "Las variables no pueden estar armonizadas porque se trata de una variable de pesos.",
 	"missingReason": "Las variables no pueden estar armonizadas porque una tiene valores perdidos y la otra no.",
+	"subsetReason": "En una variable hay datos de más categorías que en la otra. Para poder usarlas, se recomienda eliminar los individuos sobrantes o recodificar las categorías para que coincidan.",
 	"mean": "Media",
 	"deviation": "Desviación típica",
 	"max": "Máximo",

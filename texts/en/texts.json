@@ -76,6 +76,7 @@
 	"categoriesReason": "The variables cannot be harmonized because there are different categories.",
 	"weightReason": "This variable cannot be harmonized because it is a weight variable.",
 	"missingReason": "The variables cannot be harmonized because only one of them has missing data.",
+	"subsetReason": "One variable has data from more categories than the other. To be able to use them, it is recommended to remove the extra individuals or recode the categories so that they match.",
 	"mean": "Mean",
 	"deviation": "Standard deviation",
 	"max": "Maximum",
